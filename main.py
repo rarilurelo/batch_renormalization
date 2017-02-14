@@ -15,7 +15,7 @@ parser.add_argument('--batch-size', type=int, default=64, metavar='N',
                     help='input batch size for training (default: 64)')
 parser.add_argument('--test-batch-size', type=int, default=1000, metavar='N',
                     help='input batch size for testing (default: 1000)')
-parser.add_argument('--epochs', type=int, default=10, metavar='N',
+parser.add_argument('--epochs', type=int, default=100, metavar='N',
                     help='number of epochs to train (default: 10)')
 parser.add_argument('--lr', type=float, default=0.01, metavar='LR',
                     help='learning rate (default: 0.01)')
@@ -51,13 +51,13 @@ test_loader = torch.utils.data.DataLoader(
     batch_size=args.batch_size, shuffle=True, **kwargs)
 
 def r_d_func(itr):
-    if itr < 5:
+    if itr < 5000:
         return 1, 0
-    if itr < 10:
+    if itr < 40000:
         r_max = 2/35000 * (itr - 5000) + 1
     else:
         r_max = 3
-    if itr < 10:
+    if itr < 25000:
         d_max = 5/20000 * (itr -5000)
     else:
         d_max = 5
